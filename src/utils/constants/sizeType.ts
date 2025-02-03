@@ -1,0 +1,1 @@
+export const sizeType = ['SX', 'S', 'M', 'L', 'XL', 'XXL'];

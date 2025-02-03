@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    font-family: 'Inter', sans-serif;
+  }
+  body {
+  }
+  html {
+    @apply scrollbar-thin scrollbar-thumb scrollbar-track;
+  }
+}
+.leaflet-container {
+  height: 40vh;
+  width: 100%;
+}
+.ant-dropdown-menu-item:hover {
+  background-color: #01567f !important;
+}
+.ant-dropdown-menu-item:hover .ant-dropdown-menu-title-content {
+  color: #fff !important;
+}
+.ant-table {
+  scrollbar-color: unset !important;
+}
+.address-select .ant-select-selector:hover {
+  border-color: #01567f !important;
+}
+.address-select .ant-select-selector:focus-within {
+  border-color: #01567f !important;
+  box-shadow: 0 0 0 1px #01567f !important;
+}
+.address-select .ant-select-selector:focus {
+  border-color: #01567f !important;
+  box-shadow: 0 0 0 1px #01567f !important;
+}
+.header-menu-item .ant-menu-item-only-child {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.header-menu-item.ant-menu-item-only-child {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.ant-menu-root.ant-menu-inline {
+  border-inline-end: 0;
+  border-inline-start: 1px solid rgba(5, 5, 5, 0.06);
+}
