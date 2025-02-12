@@ -15,14 +15,15 @@ import { icons, NAVIGATION_ITEMS, PATH, topSearch } from '@/utils'
 import { findActiveKey } from '@/utils'
 
 import logo from '@/assets/images/logo.webp'
-import { IProduct } from '@/interfaces'
+import { INavigationItem, IProduct } from '@/interfaces'
 
 export function Header() {
   const { currentUser, setCurrentUser } = useAuthStore()
   const { productCount, setQuantity } = useCartStore()
   const location = useLocation()
 
-  const currentKey = findActiveKey(NAVIGATION_ITEMS, location.search)
+  const [navItems, setNavItems] = useState<INavigationItem[]>([])
+  const currentKey = findActiveKey(navItems, location.search)
 
   const { callApi: callApiLogout } = useApi<void>()
   const { loading, callApi: getBySearchQuery } = useApi<void>()
@@ -43,6 +44,11 @@ export function Header() {
       setProducts(data.data)
     })
   }
+
+  useEffect(() => {
+    NAVIGATION_ITEMS.then(setNavItems)
+  }, [])
+
   useEffect(() => {
     if (query) {
       setTrueSearching()
@@ -256,7 +262,7 @@ export function Header() {
           <Menu
             mode='horizontal'
             className='flex-col sm:flex-row justify-between items-center uppercase flex-1 text-center hidden md:flex'
-            items={NAVIGATION_ITEMS.map((item) => ({
+            items={navItems.map((item) => ({
               ...item,
               style: { flex: 1, textAlign: 'center' }
             }))}
@@ -283,7 +289,7 @@ export function Header() {
             <Menu
               mode='inline'
               className='lg:max-w-[40%] max-w-[90%] top-0 max-h-[320px] lg:text-xl text-base'
-              items={NAVIGATION_ITEMS.map((item) => ({
+              items={navItems.map((item) => ({
                 ...item,
                 style: { textAlign: 'center', width: '100%' },
                 className: 'header-menu-item'
